@@ -10,8 +10,8 @@ using eCommerceStarterCode.Data;
 namespace eCommerceStarterCode.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210513194619_CreateDatabase")]
-    partial class CreateDatabase
+    [Migration("20210517202550_Seed")]
+    partial class Seed
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -46,6 +46,22 @@ namespace eCommerceStarterCode.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "a15a47e4-4531-4654-9cc0-2cb278cc1c1c",
+                            ConcurrencyStamp = "03e201b2-9a69-491d-9ddb-81a77df454d4",
+                            Name = "User",
+                            NormalizedName = "USER"
+                        },
+                        new
+                        {
+                            Id = "96ed7324-335d-4314-b1de-ca34d4de42ef",
+                            ConcurrencyStamp = "06d5ebdf-68b5-4316-85d4-27ac6266acfb",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -150,6 +166,124 @@ namespace eCommerceStarterCode.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("eCommerceStarterCode.Models.Product", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 11,
+                            Description = "you've GOAT to try it",
+                            Name = "Goat -butter",
+                            Price = 10m
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Your NEIGHbors will love it",
+                            Name = "Horse-butter",
+                            Price = 20m
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "Other butter MOOve out of the way",
+                            Name = "Cow-butter",
+                            Price = 20m
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "We get it you're hip...",
+                            Name = "Basil-gin infused butter",
+                            Price = 80m
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Description = "Will go back to solid during shipping",
+                            Name = "Melted-butter",
+                            Price = 60m
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Description = "You ever milk an almond....",
+                            Name = "Almond-butter",
+                            Price = 30m
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Description = "Great snack after your Peleton workout",
+                            Name = "Lifestyle-butter",
+                            Price = 60m
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Description = "Greenland-shark-butter",
+                            Name = "Norwegian-butter",
+                            Price = 500m
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Description = "Godzilla's favorite butter (easter egg)",
+                            Name = "Hokkaido-butter",
+                            Price = 150m
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Description = "You don't have to share",
+                            Name = "Hugo Chavez-butter",
+                            Price = 1m
+                        });
+                });
+
+            modelBuilder.Entity("eCommerceStarterCode.Models.ShoppingCart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ShoppingCarts");
                 });
 
             modelBuilder.Entity("eCommerceStarterCode.Models.User", b =>
@@ -272,6 +406,23 @@ namespace eCommerceStarterCode.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("eCommerceStarterCode.Models.ShoppingCart", b =>
+                {
+                    b.HasOne("eCommerceStarterCode.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("eCommerceStarterCode.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Product");
+
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using eCommerceStarterCode.Data;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,5 +12,10 @@ namespace eCommerceStarterCode.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
+        private readonly ApplicationDbContext _context;
+        public ProductController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
     }
 }

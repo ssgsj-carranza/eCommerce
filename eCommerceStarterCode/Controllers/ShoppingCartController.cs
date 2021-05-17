@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using eCommerceStarterCode.Data;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
+using eCommerceStarterCode.Models;
 
 namespace eCommerceStarterCode.Controllers
 {
@@ -17,5 +20,15 @@ namespace eCommerceStarterCode.Controllers
         {
             _context = context;
         }
+        [HttpGet]
+        public IActionResult Get()
+
+        {
+            var shoppingcart = _context.ShoppingCarts;
+
+	        return Ok();
+        }
+
+
     }
 }
