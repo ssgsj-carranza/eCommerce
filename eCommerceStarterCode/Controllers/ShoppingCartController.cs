@@ -20,13 +20,13 @@ namespace eCommerceStarterCode.Controllers
         {
             _context = context;
         }
-        [HttpGet]
+        [HttpGet, Authorize]
         public IActionResult Get()
 
         {
-            var shoppingcart = _context.ShoppingCarts;
+            var shoppingcarts = _context.ShoppingCarts;
 
-	        return Ok();
+	        return Ok(shoppingcarts);
         }
 
 

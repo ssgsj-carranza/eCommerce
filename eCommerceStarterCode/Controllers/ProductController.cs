@@ -1,4 +1,5 @@
 ﻿using eCommerceStarterCode.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace eCommerceStarterCode.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/products")]
     [ApiController]
     public class ProductController : ControllerBase
     {
@@ -16,6 +17,14 @@ namespace eCommerceStarterCode.Controllers
         public ProductController(ApplicationDbContext context)
         {
             _context = context;
+        }
+        [HttpGet]
+        public IActionResult Get()
+
+        {
+            var products = _context.Products;
+
+            return Ok(products);
         }
     }
 }
