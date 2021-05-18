@@ -10,8 +10,8 @@ using eCommerceStarterCode.Data;
 namespace eCommerceStarterCode.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210518154600_usermigration")]
-    partial class usermigration
+    [Migration("20210518185919_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -152,6 +152,28 @@ namespace eCommerceStarterCode.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("eCommerceStarterCode.Models.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Category");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Seasoned"
+                        });
+                });
+
             modelBuilder.Entity("eCommerceStarterCode.Models.Inventory", b =>
                 {
                     b.Property<int>("Id")
@@ -184,18 +206,105 @@ namespace eCommerceStarterCode.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 11,
+                            CategoryId = 1,
+                            Description = "you've GOAT to try it",
+                            Name = "Goat -butter",
+                            Price = 10.0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CategoryId = 1,
+                            Description = "Your NEIGHbors will love it",
+                            Name = "Horse-butter",
+                            Price = 20.0
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CategoryId = 1,
+                            Description = "Other butter MOOve out of the way",
+                            Name = "Cow-butter",
+                            Price = 20.0
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CategoryId = 1,
+                            Description = "We get it you're hip...",
+                            Name = "Basil-gin infused butter",
+                            Price = 80.0
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CategoryId = 1,
+                            Description = "Will go back to solid during shipping",
+                            Name = "Melted-butter",
+                            Price = 60.0
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CategoryId = 1,
+                            Description = "You ever milk an almond....",
+                            Name = "Almond-butter",
+                            Price = 30.0
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CategoryId = 1,
+                            Description = "Great snack after your Peleton workout",
+                            Name = "Lifestyle-butter",
+                            Price = 60.0
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CategoryId = 1,
+                            Description = "Greenland-shark-butter",
+                            Name = "Norwegian-butter",
+                            Price = 500.0
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CategoryId = 1,
+                            Description = "Godzilla's favorite butter (easter egg)",
+                            Name = "Hokkaido-butter",
+                            Price = 150.0
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CategoryId = 1,
+                            Description = "You don't have to share",
+                            Name = "Hugo Chavez-butter",
+                            Price = 1.0
+                        });
                 });
 
             modelBuilder.Entity("eCommerceStarterCode.Models.ShoppingCart", b =>
@@ -366,6 +475,17 @@ namespace eCommerceStarterCode.Migrations
                     b.Navigation("Product");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("eCommerceStarterCode.Models.Product", b =>
+                {
+                    b.HasOne("eCommerceStarterCode.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("eCommerceStarterCode.Models.ShoppingCart", b =>
