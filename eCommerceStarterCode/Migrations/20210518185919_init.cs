@@ -255,7 +255,7 @@ namespace eCommerceStarterCode.Migrations
                 columns: new[] { "Id", "CategoryId", "Description", "Name", "Price" },
                 values: new object[,]
                 {
-                    { 11, 1, "you've GOAT to try it", "Goat -butter", 10.0 },
+                    { 1, 1, "you've GOAT to try it", "Goat -butter", 10.0 },
                     { 2, 1, "Your NEIGHbors will love it", "Horse-butter", 20.0 },
                     { 3, 1, "Other butter MOOve out of the way", "Cow-butter", 20.0 },
                     { 4, 1, "We get it you're hip...", "Basil-gin infused butter", 80.0 },
