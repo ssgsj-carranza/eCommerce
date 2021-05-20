@@ -10,6 +10,8 @@ namespace eCommerceStarterCode.DataTransferObjects
         public string UserName { get; set; }
         [Required(ErrorMessage = "Password is required.")]
         public string Password { get; set; }
+        public string Address { get; set; }
+        public bool isBuyer { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
     }

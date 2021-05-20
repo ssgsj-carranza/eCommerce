@@ -44,6 +44,22 @@ namespace eCommerceStarterCode.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "f1c837c0-16bd-4c3e-b03c-1e2a521552ff",
+                            ConcurrencyStamp = "47726689-dfdb-4902-a3d6-89598bf2b767",
+                            Name = "User",
+                            NormalizedName = "USER"
+                        },
+                        new
+                        {
+                            Id = "94b25d94-8a15-4a8d-b9c7-305ec130787a",
+                            ConcurrencyStamp = "49a05c12-fa0d-4202-8981-6fc7d3d166ae",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -163,13 +179,6 @@ namespace eCommerceStarterCode.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Category");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Seasoned"
-                        });
                 });
 
             modelBuilder.Entity("eCommerceStarterCode.Models.Inventory", b =>
@@ -221,88 +230,6 @@ namespace eCommerceStarterCode.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 11,
-                            CategoryId = 1,
-                            Description = "you've GOAT to try it",
-                            Name = "Goat -butter",
-                            Price = 10.0
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CategoryId = 1,
-                            Description = "Your NEIGHbors will love it",
-                            Name = "Horse-butter",
-                            Price = 20.0
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CategoryId = 1,
-                            Description = "Other butter MOOve out of the way",
-                            Name = "Cow-butter",
-                            Price = 20.0
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CategoryId = 1,
-                            Description = "We get it you're hip...",
-                            Name = "Basil-gin infused butter",
-                            Price = 80.0
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CategoryId = 1,
-                            Description = "Will go back to solid during shipping",
-                            Name = "Melted-butter",
-                            Price = 60.0
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CategoryId = 1,
-                            Description = "You ever milk an almond....",
-                            Name = "Almond-butter",
-                            Price = 30.0
-                        },
-                        new
-                        {
-                            Id = 7,
-                            CategoryId = 1,
-                            Description = "Great snack after your Peleton workout",
-                            Name = "Lifestyle-butter",
-                            Price = 60.0
-                        },
-                        new
-                        {
-                            Id = 8,
-                            CategoryId = 1,
-                            Description = "Greenland-shark-butter",
-                            Name = "Norwegian-butter",
-                            Price = 500.0
-                        },
-                        new
-                        {
-                            Id = 9,
-                            CategoryId = 1,
-                            Description = "Godzilla's favorite butter (easter egg)",
-                            Name = "Hokkaido-butter",
-                            Price = 150.0
-                        },
-                        new
-                        {
-                            Id = 10,
-                            CategoryId = 1,
-                            Description = "You don't have to share",
-                            Name = "Hugo Chavez-butter",
-                            Price = 1.0
-                        });
                 });
 
             modelBuilder.Entity("eCommerceStarterCode.Models.ShoppingCart", b =>
