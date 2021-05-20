@@ -24,6 +24,19 @@ namespace eCommerceStarterCode.Data
                 {
                     Id = 1,
                     Name = "Seasoned"
+                },
+
+
+                new Category
+                {
+                    Id = 2,
+                    Name = "Animal"
+                },
+
+                new Category
+                {
+                    Id = 3,
+                    Name = "Exotic"
                 }
                 );
             modelBuilder.Entity<Product>().HasData
@@ -34,7 +47,7 @@ namespace eCommerceStarterCode.Data
                     Name = "Goat -butter",
                     Description = "you've GOAT to try it",
                     Price = 10.0,
-                    CategoryId = 1
+                    CategoryId = 2
                 },
                 new Product
                 {
@@ -42,7 +55,7 @@ namespace eCommerceStarterCode.Data
                     Name = "Horse-butter",
                     Description = "Your NEIGHbors will love it",
                     Price = 20.0,
-                    CategoryId = 1
+                    CategoryId = 2
                 },
                 new Product
                 {
@@ -50,7 +63,7 @@ namespace eCommerceStarterCode.Data
                     Name = "Cow-butter",
                     Description = "Other butter MOOve out of the way",
                     Price = 20.0,
-                    CategoryId = 1
+                    CategoryId = 2
                 },
                 new Product
                 {
@@ -66,7 +79,7 @@ namespace eCommerceStarterCode.Data
                     Name = "Melted-butter",
                     Description = "Will go back to solid during shipping",
                     Price = 60.0,
-                    CategoryId = 1
+                    CategoryId = 3
                 },
                 new Product
                 {
@@ -82,7 +95,7 @@ namespace eCommerceStarterCode.Data
                     Name = "Lifestyle-butter",
                     Description = "Great snack after your Peleton workout",
                     Price = 60.0,
-                    CategoryId = 1
+                    CategoryId = 3
                 },
                 new Product
                 {
@@ -90,7 +103,7 @@ namespace eCommerceStarterCode.Data
                     Name = "Norwegian-butter",
                     Description = "Greenland-shark-butter",
                     Price = 500.0,
-                    CategoryId = 1
+                    CategoryId = 2
                 },
                 new Product
                 {
@@ -98,7 +111,7 @@ namespace eCommerceStarterCode.Data
                     Name = "Hokkaido-butter",
                     Description = "Godzilla's favorite butter (easter egg)",
                     Price = 150.0,
-                    CategoryId = 1
+                    CategoryId = 3
                 },
                 new Product
                 {
@@ -106,7 +119,7 @@ namespace eCommerceStarterCode.Data
                     Name = "Hugo Chavez-butter",
                     Description = "You don't have to share",
                     Price = 1.0,
-                    CategoryId = 1
+                    CategoryId = 3
                 }
             ) ;
 
