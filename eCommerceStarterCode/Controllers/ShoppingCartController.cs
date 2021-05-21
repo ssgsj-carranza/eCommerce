@@ -8,6 +8,7 @@ using eCommerceStarterCode.Data;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using eCommerceStarterCode.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace eCommerceStarterCode.Controllers
 {
@@ -27,12 +28,13 @@ namespace eCommerceStarterCode.Controllers
             var shoppingcarts = _context.ShoppingCarts;
 	        return Ok(shoppingcarts);
         }
-        [HttpPost]
+        [HttpPost, Authorize]
         public IActionResult Post([FromBody]ShoppingCart value)
         {
             _context.ShoppingCarts.Add(value);
             _context.SaveChanges();
-            return StatusCode(201, value);
+            var ShoppingCartItem = _context.ShoppingCarts.Include(p => p.Product).Include(p => p.User).Where(sc => sc.Id == value.Id).FirstOrDefault();
+            return StatusCode(201, ShoppingCartItem);
         }
         [HttpDelete] //Probably wrong address. Needs to be unique for each product? DEFINITELY WRONG
         public IActionResult Delete([FromBody] ShoppingCart value)
