@@ -17,13 +17,13 @@ namespace eCommerceStarterCode.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            //modelBuilder.ApplyConfiguration(new RolesConfiguration());
+            modelBuilder.ApplyConfiguration(new RolesConfiguration());
 
             //modelBuilder.Entity<Product>().HasData
             //(
             //    new Product
             //    {
-            //        Id = 11,
+            //        Id = 1,
             //        Name = "Goat -butter",
             //        Description = "you've GOAT to try it",
             //        Price = 10
@@ -96,6 +96,7 @@ namespace eCommerceStarterCode.Data
         public DbSet<Product>Products { get; set; }
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
         public DbSet<Inventory> Inventories { get; set; }
+        public DbSet<Review> Reviews { get; set; }
 
     }
 }

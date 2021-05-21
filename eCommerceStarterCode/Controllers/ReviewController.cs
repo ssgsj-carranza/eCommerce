@@ -1,7 +1,5 @@
 ﻿using eCommerceStarterCode.Data;
 using eCommerceStarterCode.Models;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace eCommerceStarterCode.Controllers
 {
-    [Route("api/products")]
+    [Route("api/[controller]")]
     [ApiController]
-    public class ProductController : ControllerBase
+    public class ReviewController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-        public ProductController(ApplicationDbContext context)
+        public ReviewController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -23,16 +21,15 @@ namespace eCommerceStarterCode.Controllers
         public IActionResult Get()
 
         {
-            var products = _context.Products;
-
-            return Ok(products);
+            var reviews = _context.Reviews;
+            return Ok(reviews);
         }
         [HttpPost]
-        public IActionResult Post([FromBody]Product value)
+        public IActionResult Post([FromBody] Review value)
         {
-            _context.Products.Add(value);
+            _context.Reviews.Add(value);
             _context.SaveChanges();
-            return StatusCode(201, value);
+        return StatusCode(201, value);
         }
     }
 }

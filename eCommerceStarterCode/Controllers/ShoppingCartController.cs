@@ -25,10 +25,21 @@ namespace eCommerceStarterCode.Controllers
 
         {
             var shoppingcarts = _context.ShoppingCarts;
-
 	        return Ok(shoppingcarts);
         }
-
-
+        [HttpPost]
+        public IActionResult Post([FromBody]ShoppingCart value)
+        {
+            _context.ShoppingCarts.Add(value);
+            _context.SaveChanges();
+            return StatusCode(201, value);
+        }
+        [HttpDelete("[Key]")] //Probably wrong address. Needs to be unique for each product?
+        public IActionResult Delete([FromBody] ShoppingCart value)
+        {
+            _context.ShoppingCarts.Remove(value);
+            _context.SaveChanges();
+            return StatusCode(201, value);
+        }
     }
 }
