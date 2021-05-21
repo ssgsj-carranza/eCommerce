@@ -22,11 +22,11 @@ namespace eCommerceStarterCode.Controllers
             _context = context;
         }
         [HttpGet, Authorize]
-        public IActionResult Get()
+        public IActionResult Get([FromBody]User user)
 
         {
-            var shoppingcarts = _context.ShoppingCarts;
-	        return Ok(shoppingcarts);
+            var UserShoppingCart = _context.ShoppingCarts. Include(p => p.Product).Include(p => p.User).Where(sc => sc.UserId == user.Id).ToList();
+	        return Ok(UserShoppingCart);
         }
         [HttpPost, Authorize]
         public IActionResult Post([FromBody]ShoppingCart value)
