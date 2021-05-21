@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "58c6c1ba-75d9-420d-827d-76fa8980bfa3",
+		"_postman_id": "fce35956-c154-4b83-83f3-b284376ac437",
 		"name": "ASP_NET_eCommerce_Web_API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -93,6 +93,43 @@
 								"user"
 							]
 						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ShoppingCart",
+			"item": [
+				{
+					"name": "Get_ShoppingCart",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "POST_SHOPPINGCART",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "GET_Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
 					},
 					"response": []
 				}
