@@ -34,7 +34,7 @@ namespace eCommerceStarterCode.Controllers
             _context.SaveChanges();
             return StatusCode(201, value);
         }
-        [HttpDelete("[Key]")] //Probably wrong address. Needs to be unique for each product?
+        [HttpDelete("[Key]")] //Probably wrong address. Needs to be unique for each product? DEFINITELY WRONG
         public IActionResult Delete([FromBody] ShoppingCart value)
         {
             _context.ShoppingCarts.Remove(value);
