@@ -3,6 +3,7 @@ using eCommerceStarterCode.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,8 +25,8 @@ namespace eCommerceStarterCode.Controllers
 
         {
             var products = _context.Products;
-
-            return Ok(products);
+            var product = _context.Products.Include(p => p.Category).ToList();
+            return Ok(product);
         }
         [HttpPost]
         public IActionResult Post([FromBody]Product value)
